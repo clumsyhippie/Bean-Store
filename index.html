@@ -342,6 +342,12 @@
         let userBeanBalance = 0; // Will be updated from StreamerBot
         let socket = null;
 
+        const params = new URLSearchParams(window.location.search);
+
+        // Get individual values
+        const foo = params.get('username');
+        alert(foo);
+
         // Connect to StreamerBot WebSocket when page loads
         document.addEventListener('DOMContentLoaded', function() {
             setupStreamerBotConnection();
