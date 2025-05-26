@@ -1,9 +1,12 @@
-<html lang="en"><head>
+<html lang="en">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bean Store - Cozy Nature Stream</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet">
     <style>
         body {
             font-family: 'Quicksand', sans-serif;
@@ -12,78 +15,135 @@
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a7c957' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             overflow-x: hidden;
         }
+
         .store-item {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
         }
+
         .store-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px -5px rgba(92, 64, 51, 0.2);
         }
+
         .purchase-btn {
             transition: all 0.3s ease;
         }
+
         .purchase-btn:hover {
             transform: scale(1.05);
         }
+
         .purchase-btn:active {
             transform: scale(0.95);
         }
+
         .bean-icon {
             filter: drop-shadow(0 0 3px rgba(167, 201, 87, 0.5));
         }
+
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
         }
+
         .float {
             animation: float 6s ease-in-out infinite;
         }
+
         .leaf-pattern {
             background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a7c957' fill-opacity='0.15'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
+
         .sound-item {
             transition: all 0.2s ease;
         }
+
         .sound-item:hover {
             background-color: rgba(167, 201, 87, 0.1);
         }
+
         .sound-item.selected {
             background-color: rgba(167, 201, 87, 0.2);
             border-color: #6a994e;
         }
+
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
+
         .pulse {
             animation: pulse 2s infinite;
         }
+
         @keyframes shake {
-            0% { transform: rotate(0deg); }
-            25% { transform: rotate(5deg); }
-            50% { transform: rotate(0eg); }
-            75% { transform: rotate(-5deg); }
-            100% { transform: rotate(0deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(5deg);
+            }
+
+            50% {
+                transform: rotate(0eg);
+            }
+
+            75% {
+                transform: rotate(-5deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
         }
+
         .shake:hover {
             animation: shake 0.5s ease-in-out;
         }
+
         @keyframes glow {
-            0%, 100% { box-shadow: 0 0 5px rgba(167, 201, 87, 0.5); }
-            50% { box-shadow: 0 0 20px rgba(167, 201, 87, 0.8); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 5px rgba(167, 201, 87, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 20px rgba(167, 201, 87, 0.8);
+            }
         }
+
         .glow {
             animation: glow 3s infinite;
         }
+
         .item-content {
             flex: 1;
         }
+
         .item-footer {
             margin-top: auto;
         }
+
         .command-tag {
             background-color: #f0f9e8;
             border: 1px solid #a7c957;
@@ -93,7 +153,7 @@
             font-size: 0.85em;
             color: #6a994e;
         }
-        
+
         /* Bean Rain Animation */
         .bean-container {
             position: fixed;
@@ -105,6 +165,7 @@
             z-index: 1000;
             overflow: hidden;
         }
+
         .bean {
             position: absolute;
             width: 30px;
@@ -112,21 +173,1234 @@
             opacity: 0;
             animation: fall linear forwards;
         }
+
         @keyframes fall {
             0% {
                 transform: translateY(-100px) rotate(0deg);
                 opacity: 1;
             }
+
             85% {
                 opacity: 1;
             }
+
             100% {
                 transform: translateY(calc(100vh + 100px)) rotate(360deg);
                 opacity: 0;
             }
         }
+
+        /* Pixel-based Tailwind overrides */
+        .h-3 {
+            height: 12px;
+        }
+
+        .h-4 {
+            height: 16px;
+        }
+
+        .h-5 {
+            height: 20px;
+        }
+
+        .h-6 {
+            height: 24px;
+        }
+
+        .h-7 {
+            height: 28px;
+        }
+
+        .h-8 {
+            height: 32px;
+        }
+
+        .h-10 {
+            height: 40px;
+        }
+
+        .h-12 {
+            height: 48px;
+        }
+
+        .h-20 {
+            height: 80px;
+        }
+
+        .h-40 {
+            height: 160px;
+        }
+
+        .h-full {
+            height: 100%;
+        }
+
+        .max-h-80 {
+            max-height: 320px;
+        }
+
+        .w-4 {
+            width: 16px;
+        }
+
+        .w-5 {
+            width: 20px;
+        }
+
+        .w-6 {
+            width: 24px;
+        }
+
+        .w-7 {
+            width: 28px;
+        }
+
+        .w-8 {
+            width: 32px;
+        }
+
+        .w-10 {
+            width: 40px;
+        }
+
+        .w-12 {
+            width: 48px;
+        }
+
+        .w-20 {
+            width: 80px;
+        }
+
+        .w-40 {
+            width: 160px;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .max-w-md {
+            max-width: 448px;
+        }
+
+        .max-w-2xl {
+            max-width: 672px;
+        }
+
+        .max-w-5xl {
+            max-width: 896px;
+        }
+
+        .max-w-210 {
+            max-width: 210px;
+        }
+
+        .text-sm {
+            font-size: 14px;
+        }
+
+        .text-lg {
+            font-size: 18px;
+        }
+
+        .text-xl {
+            font-size: 20px;
+        }
+
+        .text-2xl {
+            font-size: 24px;
+        }
+
+        .text-5xl {
+            font-size: 48px;
+        }
+
+        .p-4 {
+            padding: 16px;
+        }
+
+        .p-6 {
+            padding: 24px;
+        }
+
+        .p-8 {
+            padding: 32px;
+        }
+
+        .px-4 {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        .px-5 {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .py-1 {
+            padding-top: 4px;
+            padding-bottom: 4px;
+        }
+
+        .py-2 {
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        .py-12 {
+            padding-top: 48px;
+            padding-bottom: 48px;
+        }
+
+        .pr-2 {
+            padding-right: 8px;
+        }
+
+        .mb-2 {
+            margin-bottom: 8px;
+        }
+
+        .mb-3 {
+            margin-bottom: 12px;
+        }
+
+        .mb-4 {
+            margin-bottom: 16px;
+        }
+
+        .mb-6 {
+            margin-bottom: 24px;
+        }
+
+        .mb-8 {
+            margin-bottom: 32px;
+        }
+
+        .mb-12 {
+            margin-bottom: 48px;
+        }
+
+        .ml-2 {
+            margin-left: 8px;
+        }
+
+        .mr-2 {
+            margin-right: 8px;
+        }
+
+        .mr-3 {
+            margin-right: 12px;
+        }
+
+        .mr-4 {
+            margin-right: 16px;
+        }
+
+        .mt-1 {
+            margin-top: 4px;
+        }
+
+        .mt-4 {
+            margin-top: 16px;
+        }
+
+        .mx-4 {
+            margin-left: 16px;
+            margin-right: 16px;
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .m-0 {
+            margin: 0;
+        }
+
+        .rounded-full {
+            border-radius: 9999px;
+        }
+
+        .rounded-xl {
+            border-radius: 12px;
+        }
+
+        .rounded-2xl {
+            border-radius: 16px;
+        }
+
+        .shadow-md {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .shadow-lg {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
     </style>
-<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0px}.bottom-0{bottom:0px}.bottom-4{bottom:1rem}.left-0{left:0px}.right-0{right:0px}.right-4{right:1rem}.top-0{top:0px}.z-50{z-index:50}.mx-4{margin-left:1rem;margin-right:1rem}.mx-auto{margin-left:auto;margin-right:auto}.mb-12{margin-bottom:3rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mr-2{margin-right:0.5rem}.mr-3{margin-right:0.75rem}.mr-4{margin-right:1rem}.mt-1{margin-top:0.25rem}.mt-4{margin-top:1rem}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-12{height:3rem}.h-20{height:5rem}.h-3{height:0.75rem}.h-4{height:1rem}.h-40{height:10rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-7{height:1.75rem}.h-8{height:2rem}.h-full{height:100%}.max-h-80{max-height:20rem}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-12{width:3rem}.w-20{width:5rem}.w-4{width:1rem}.w-40{width:10rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-7{width:1.75rem}.w-8{width:2rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-5xl{max-width:64rem}.max-w-md{max-width:28rem}.translate-y-20{--tw-translate-y:5rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-8{gap:2rem}.space-x-2 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.5rem * var(--tw-space-x-reverse));margin-left:calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-green-200{--tw-border-opacity:1;border-color:rgb(187 247 208 / var(--tw-border-opacity, 1))}.border-red-200{--tw-border-opacity:1;border-color:rgb(254 202 202 / var(--tw-border-opacity, 1))}.bg-amber-400{--tw-bg-opacity:1;background-color:rgb(251 191 36 / var(--tw-bg-opacity, 1))}.bg-amber-500{--tw-bg-opacity:1;background-color:rgb(245 158 11 / var(--tw-bg-opacity, 1))}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))}.bg-blue-400{--tw-bg-opacity:1;background-color:rgb(96 165 250 / var(--tw-bg-opacity, 1))}.bg-gray-200{--tw-bg-opacity:1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.bg-green-100{--tw-bg-opacity:1;background-color:rgb(220 252 231 / var(--tw-bg-opacity, 1))}.bg-green-50{--tw-bg-opacity:1;background-color:rgb(240 253 244 / var(--tw-bg-opacity, 1))}.bg-green-500{--tw-bg-opacity:1;background-color:rgb(34 197 94 / var(--tw-bg-opacity, 1))}.bg-green-600{--tw-bg-opacity:1;background-color:rgb(22 163 74 / var(--tw-bg-opacity, 1))}.bg-indigo-500{--tw-bg-opacity:1;background-color:rgb(99 102 241 / var(--tw-bg-opacity, 1))}.bg-pink-400{--tw-bg-opacity:1;background-color:rgb(244 114 182 / var(--tw-bg-opacity, 1))}.bg-purple-500{--tw-bg-opacity:1;background-color:rgb(168 85 247 / var(--tw-bg-opacity, 1))}.bg-red-100{--tw-bg-opacity:1;background-color:rgb(254 226 226 / var(--tw-bg-opacity, 1))}.bg-red-500{--tw-bg-opacity:1;background-color:rgb(239 68 68 / var(--tw-bg-opacity, 1))}.bg-rose-400{--tw-bg-opacity:1;background-color:rgb(251 113 133 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-opacity-50{--tw-bg-opacity:0.5}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-green-700{--tw-gradient-from:#15803d var(--tw-gradient-from-position);--tw-gradient-to:rgb(21 128 61 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-green-500{--tw-gradient-to:#22c55e var(--tw-gradient-to-position)}.bg-clip-text{-webkit-background-clip:text;background-clip:text}.p-4{padding:1rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.pr-2{padding-right:0.5rem}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-5xl{font-size:3rem;line-height:1}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.italic{font-style:italic}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-green-700{--tw-text-opacity:1;color:rgb(21 128 61 / var(--tw-text-opacity, 1))}.text-green-800{--tw-text-opacity:1;color:rgb(22 101 52 / var(--tw-text-opacity, 1))}.text-red-800{--tw-text-opacity:1;color:rgb(153 27 27 / var(--tw-text-opacity, 1))}.text-transparent{color:transparent}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.opacity-0{opacity:0}.opacity-30{opacity:0.3}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.hover\:border-green-400:hover{--tw-border-opacity:1;border-color:rgb(74 222 128 / var(--tw-border-opacity, 1))}.hover\:bg-gray-300:hover{--tw-bg-opacity:1;background-color:rgb(209 213 219 / var(--tw-bg-opacity, 1))}.hover\:bg-green-200:hover{--tw-bg-opacity:1;background-color:rgb(187 247 208 / var(--tw-bg-opacity, 1))}.hover\:bg-green-700:hover{--tw-bg-opacity:1;background-color:rgb(21 128 61 / var(--tw-bg-opacity, 1))}@media (min-width: 640px){.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}}@media (min-width: 768px){.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}}</style></head>
+    <style>
+        *,
+        ::before,
+        ::after {
+            --tw-border-spacing-x: 0;
+            --tw-border-spacing-y: 0;
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-pan-x: ;
+            --tw-pan-y: ;
+            --tw-pinch-zoom: ;
+            --tw-scroll-snap-strictness: proximity;
+            --tw-gradient-from-position: ;
+            --tw-gradient-via-position: ;
+            --tw-gradient-to-position: ;
+            --tw-ordinal: ;
+            --tw-slashed-zero: ;
+            --tw-numeric-figure: ;
+            --tw-numeric-spacing: ;
+            --tw-numeric-fraction: ;
+            --tw-ring-inset: ;
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: rgb(59 130 246 / 0.5);
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            --tw-blur: ;
+            --tw-brightness: ;
+            --tw-contrast: ;
+            --tw-grayscale: ;
+            --tw-hue-rotate: ;
+            --tw-invert: ;
+            --tw-saturate: ;
+            --tw-sepia: ;
+            --tw-drop-shadow: ;
+            --tw-backdrop-blur: ;
+            --tw-backdrop-brightness: ;
+            --tw-backdrop-contrast: ;
+            --tw-backdrop-grayscale: ;
+            --tw-backdrop-hue-rotate: ;
+            --tw-backdrop-invert: ;
+            --tw-backdrop-opacity: ;
+            --tw-backdrop-saturate: ;
+            --tw-backdrop-sepia: ;
+            --tw-contain-size: ;
+            --tw-contain-layout: ;
+            --tw-contain-paint: ;
+            --tw-contain-style:
+        }
+
+        ::backdrop {
+            --tw-border-spacing-x: 0;
+            --tw-border-spacing-y: 0;
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-pan-x: ;
+            --tw-pan-y: ;
+            --tw-pinch-zoom: ;
+            --tw-scroll-snap-strictness: proximity;
+            --tw-gradient-from-position: ;
+            --tw-gradient-via-position: ;
+            --tw-gradient-to-position: ;
+            --tw-ordinal: ;
+            --tw-slashed-zero: ;
+            --tw-numeric-figure: ;
+            --tw-numeric-spacing: ;
+            --tw-numeric-fraction: ;
+            --tw-ring-inset: ;
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: rgb(59 130 246 / 0.5);
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            --tw-blur: ;
+            --tw-brightness: ;
+            --tw-contrast: ;
+            --tw-grayscale: ;
+            --tw-hue-rotate: ;
+            --tw-invert: ;
+            --tw-saturate: ;
+            --tw-sepia: ;
+            --tw-drop-shadow: ;
+            --tw-backdrop-blur: ;
+            --tw-backdrop-brightness: ;
+            --tw-backdrop-contrast: ;
+            --tw-backdrop-grayscale: ;
+            --tw-backdrop-hue-rotate: ;
+            --tw-backdrop-invert: ;
+            --tw-backdrop-opacity: ;
+            --tw-backdrop-saturate: ;
+            --tw-backdrop-sepia: ;
+            --tw-contain-size: ;
+            --tw-contain-layout: ;
+            --tw-contain-paint: ;
+            --tw-contain-style:
+        }
+
+        /* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */
+        *,
+        ::after,
+        ::before {
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color: #e5e7eb
+        }
+
+        ::after,
+        ::before {
+            --tw-content: ''
+        }
+
+        :host,
+        html {
+            line-height: 1.5;
+            -webkit-text-size-adjust: 100%;
+            -moz-tab-size: 4;
+            tab-size: 4;
+            font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-feature-settings: normal;
+            font-variation-settings: normal;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        body {
+            margin: 0;
+            line-height: inherit
+        }
+
+        hr {
+            height: 0;
+            color: inherit;
+            border-top-width: 1px
+        }
+
+        abbr:where([title]) {
+            -webkit-text-decoration: underline dotted;
+            text-decoration: underline dotted
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        a {
+            color: inherit;
+            text-decoration: inherit
+        }
+
+        b,
+        strong {
+            font-weight: bolder
+        }
+
+        code,
+        kbd,
+        pre,
+        samp {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-feature-settings: normal;
+            font-variation-settings: normal;
+            font-size: 1em
+        }
+
+        small {
+            font-size: 80%
+        }
+
+        sub,
+        sup {
+            font-size: 75%;
+            line-height: 0;
+            position: relative;
+            vertical-align: baseline
+        }
+
+        sub {
+            bottom: -.25em
+        }
+
+        sup {
+            top: -.5em
+        }
+
+        table {
+            text-indent: 0;
+            border-color: inherit;
+            border-collapse: collapse
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            font-family: inherit;
+            font-feature-settings: inherit;
+            font-variation-settings: inherit;
+            font-size: 100%;
+            font-weight: inherit;
+            line-height: inherit;
+            letter-spacing: inherit;
+            color: inherit;
+            margin: 0;
+            padding: 0
+        }
+
+        button,
+        select {
+            text-transform: none
+        }
+
+        button,
+        input:where([type=button]),
+        input:where([type=reset]),
+        input:where([type=submit]) {
+            -webkit-appearance: button;
+            background-color: transparent;
+            background-image: none
+        }
+
+        :-moz-focusring {
+            outline: auto
+        }
+
+        :-moz-ui-invalid {
+            box-shadow: none
+        }
+
+        progress {
+            vertical-align: baseline
+        }
+
+        ::-webkit-inner-spin-button,
+        ::-webkit-outer-spin-button {
+            height: auto
+        }
+
+        [type=search] {
+            -webkit-appearance: textfield;
+            outline-offset: -2px
+        }
+
+        ::-webkit-search-decoration {
+            -webkit-appearance: none
+        }
+
+        ::-webkit-file-upload-button {
+            -webkit-appearance: button;
+            font: inherit
+        }
+
+        summary {
+            display: list-item
+        }
+
+        blockquote,
+        dd,
+        dl,
+        figure,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        hr,
+        p,
+        pre {
+            margin: 0
+        }
+
+        fieldset {
+            margin: 0;
+            padding: 0
+        }
+
+        legend {
+            padding: 0
+        }
+
+        menu,
+        ol,
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0
+        }
+
+        dialog {
+            padding: 0
+        }
+
+        textarea {
+            resize: vertical
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            opacity: 1;
+            color: #9ca3af
+        }
+
+        [role=button],
+        button {
+            cursor: pointer
+        }
+
+        :disabled {
+            cursor: default
+        }
+
+        audio,
+        canvas,
+        embed,
+        iframe,
+        img,
+        object,
+        svg,
+        video {
+            display: block;
+            vertical-align: middle
+        }
+
+        img,
+        video {
+            max-width: 100%;
+            height: auto
+        }
+
+        [hidden]:where(:not([hidden=until-found])) {
+            display: none
+        }
+
+        .pointer-events-none {
+            pointer-events: none
+        }
+
+        .fixed {
+            position: fixed
+        }
+
+        .absolute {
+            position: absolute
+        }
+
+        .relative {
+            position: relative
+        }
+
+        .inset-0 {
+            inset: 0px
+        }
+
+        .bottom-0 {
+            bottom: 0px
+        }
+
+        .bottom-4 {
+            bottom: 1rem
+        }
+
+        .left-0 {
+            left: 0px
+        }
+
+        .right-0 {
+            right: 0px
+        }
+
+        .right-4 {
+            right: 1rem
+        }
+
+        .top-0 {
+            top: 0px
+        }
+
+        .z-50 {
+            z-index: 50
+        }
+
+        .mx-4 {
+            margin-left: 1rem;
+            margin-right: 1rem
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .mb-12 {
+            margin-bottom: 3rem
+        }
+
+        .mb-2 {
+            margin-bottom: 0.5rem
+        }
+
+        .mb-3 {
+            margin-bottom: 0.75rem
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem
+        }
+
+        .mb-6 {
+            margin-bottom: 1.5rem
+        }
+
+        .mb-8 {
+            margin-bottom: 2rem
+        }
+
+        .mr-2 {
+            margin-right: 0.5rem
+        }
+
+        .mr-3 {
+            margin-right: 0.75rem
+        }
+
+        .mr-4 {
+            margin-right: 1rem
+        }
+
+        .mt-1 {
+            margin-top: 0.25rem
+        }
+
+        .mt-4 {
+            margin-top: 1rem
+        }
+
+        .flex {
+            display: flex
+        }
+
+        .grid {
+            display: grid
+        }
+
+        .hidden {
+            display: none
+        }
+
+        .h-10 {
+            height: 2.5rem
+        }
+
+        .h-12 {
+            height: 3rem
+        }
+
+        .h-20 {
+            height: 5rem
+        }
+
+        .h-3 {
+            height: 0.75rem
+        }
+
+        .h-4 {
+            height: 1rem
+        }
+
+        .h-40 {
+            height: 10rem
+        }
+
+        .h-5 {
+            height: 1.25rem
+        }
+
+        .h-6 {
+            height: 1.5rem
+        }
+
+        .h-7 {
+            height: 1.75rem
+        }
+
+        .h-8 {
+            height: 2rem
+        }
+
+        .h-full {
+            height: 100%
+        }
+
+        .max-h-80 {
+            max-height: 20rem
+        }
+
+        .min-h-screen {
+            min-height: 100vh
+        }
+
+        .w-10 {
+            width: 2.5rem
+        }
+
+        .w-12 {
+            width: 3rem
+        }
+
+        .w-20 {
+            width: 5rem
+        }
+
+        .w-4 {
+            width: 1rem
+        }
+
+        .w-40 {
+            width: 10rem
+        }
+
+        .w-5 {
+            width: 1.25rem
+        }
+
+        .w-6 {
+            width: 1.5rem
+        }
+
+        .w-7 {
+            width: 1.75rem
+        }
+
+        .w-8 {
+            width: 2rem
+        }
+
+        .w-full {
+            width: 100%
+        }
+
+        .max-w-2xl {
+            max-width: 42rem
+        }
+
+        .max-w-5xl {
+            max-width: 64rem
+        }
+
+        .max-w-md {
+            max-width: 28rem
+        }
+
+        .translate-y-20 {
+            --tw-translate-y: 5rem;
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+        }
+
+        .transform {
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+        }
+
+        .grid-cols-1 {
+            grid-template-columns: repeat(1, minmax(0, 1fr))
+        }
+
+        .flex-col {
+            flex-direction: column
+        }
+
+        .items-center {
+            align-items: center
+        }
+
+        .justify-end {
+            justify-content: flex-end
+        }
+
+        .justify-center {
+            justify-content: center
+        }
+
+        .justify-between {
+            justify-content: space-between
+        }
+
+        .gap-8 {
+            gap: 2rem
+        }
+
+        .space-x-2> :not([hidden])~ :not([hidden]) {
+            --tw-space-x-reverse: 0;
+            margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+            margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))
+        }
+
+        .space-x-4> :not([hidden])~ :not([hidden]) {
+            --tw-space-x-reverse: 0;
+            margin-right: calc(1rem * var(--tw-space-x-reverse));
+            margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)))
+        }
+
+        .space-y-4> :not([hidden])~ :not([hidden]) {
+            --tw-space-y-reverse: 0;
+            margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+            margin-bottom: calc(1rem * var(--tw-space-y-reverse))
+        }
+
+        .overflow-hidden {
+            overflow: hidden
+        }
+
+        .overflow-y-auto {
+            overflow-y: auto
+        }
+
+        .rounded-2xl {
+            border-radius: 1rem
+        }
+
+        .rounded-full {
+            border-radius: 9999px
+        }
+
+        .rounded-xl {
+            border-radius: 0.75rem
+        }
+
+        .border {
+            border-width: 1px
+        }
+
+        .border-2 {
+            border-width: 2px
+        }
+
+        .border-green-200 {
+            --tw-border-opacity: 1;
+            border-color: rgb(187 247 208 / var(--tw-border-opacity, 1))
+        }
+
+        .border-red-200 {
+            --tw-border-opacity: 1;
+            border-color: rgb(254 202 202 / var(--tw-border-opacity, 1))
+        }
+
+        .bg-amber-400 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(251 191 36 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-amber-500 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(245 158 11 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-black {
+            --tw-bg-opacity: 1;
+            background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-blue-400 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(96 165 250 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-gray-200 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-green-100 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(220 252 231 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-green-50 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(240 253 244 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-green-500 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(34 197 94 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-green-600 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(22 163 74 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-indigo-500 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(99 102 241 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-pink-400 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(244 114 182 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-purple-500 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(168 85 247 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-red-100 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(254 226 226 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-red-500 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(239 68 68 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-rose-400 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(251 113 133 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-white {
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-opacity-50 {
+            --tw-bg-opacity: 0.5
+        }
+
+        .bg-gradient-to-r {
+            background-image: linear-gradient(to right, var(--tw-gradient-stops))
+        }
+
+        .from-green-700 {
+            --tw-gradient-from: #15803d var(--tw-gradient-from-position);
+            --tw-gradient-to: rgb(21 128 61 / 0) var(--tw-gradient-to-position);
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
+        }
+
+        .to-green-500 {
+            --tw-gradient-to: #22c55e var(--tw-gradient-to-position)
+        }
+
+        .bg-clip-text {
+            -webkit-background-clip: text;
+            background-clip: text
+        }
+
+        .p-4 {
+            padding: 1rem
+        }
+
+        .p-6 {
+            padding: 1.5rem
+        }
+
+        .p-8 {
+            padding: 2rem
+        }
+
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem
+        }
+
+        .px-5 {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem
+        }
+
+        .py-1 {
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem
+        }
+
+        .py-12 {
+            padding-top: 3rem;
+            padding-bottom: 3rem
+        }
+
+        .py-2 {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem
+        }
+
+        .pr-2 {
+            padding-right: 0.5rem
+        }
+
+        .text-center {
+            text-align: center
+        }
+
+        .text-2xl {
+            font-size: 1.5rem;
+            line-height: 2rem
+        }
+
+        .text-5xl {
+            font-size: 3rem;
+            line-height: 1
+        }
+
+        .text-lg {
+            font-size: 1.125rem;
+            line-height: 1.75rem
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+            line-height: 1.25rem
+        }
+
+        .text-xl {
+            font-size: 1.25rem;
+            line-height: 1.75rem
+        }
+
+        .font-bold {
+            font-weight: 700
+        }
+
+        .font-medium {
+            font-weight: 500
+        }
+
+        .italic {
+            font-style: italic
+        }
+
+        .text-gray-600 {
+            --tw-text-opacity: 1;
+            color: rgb(75 85 99 / var(--tw-text-opacity, 1))
+        }
+
+        .text-gray-700 {
+            --tw-text-opacity: 1;
+            color: rgb(55 65 81 / var(--tw-text-opacity, 1))
+        }
+
+        .text-green-700 {
+            --tw-text-opacity: 1;
+            color: rgb(21 128 61 / var(--tw-text-opacity, 1))
+        }
+
+        .text-green-800 {
+            --tw-text-opacity: 1;
+            color: rgb(22 101 52 / var(--tw-text-opacity, 1))
+        }
+
+        .text-red-800 {
+            --tw-text-opacity: 1;
+            color: rgb(153 27 27 / var(--tw-text-opacity, 1))
+        }
+
+        .text-transparent {
+            color: transparent
+        }
+
+        .text-white {
+            --tw-text-opacity: 1;
+            color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+        }
+
+        .opacity-0 {
+            opacity: 0
+        }
+
+        .opacity-30 {
+            opacity: 0.3
+        }
+
+        .shadow-lg {
+            --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .shadow-md {
+            --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .transition-all {
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms
+        }
+
+        .transition-colors {
+            transition-property: color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms
+        }
+
+        .duration-300 {
+            transition-duration: 300ms
+        }
+
+        .hover\:border-green-400:hover {
+            --tw-border-opacity: 1;
+            border-color: rgb(74 222 128 / var(--tw-border-opacity, 1))
+        }
+
+        .hover\:bg-gray-300:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgb(209 213 219 / var(--tw-bg-opacity, 1))
+        }
+
+        .hover\:bg-green-200:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgb(187 247 208 / var(--tw-bg-opacity, 1))
+        }
+
+        .hover\:bg-green-700:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgb(21 128 61 / var(--tw-bg-opacity, 1))
+        }
+
+        @media (min-width: 640px) {
+            .sm\:px-6 {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem
+            }
+        }
+
+        @media (min-width: 768px) {
+            .md\:grid-cols-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr))
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .lg\:grid-cols-3 {
+                grid-template-columns: repeat(3, minmax(0, 1fr))
+            }
+        }
+    </style>
+</head>
+
 <body>
     <!-- Bean Rain Container -->
     <div class="bean-container" id="bean-rain-container"></div>
@@ -136,28 +1410,47 @@
         <header class="max-w-5xl mx-auto mb-12 text-center">
             <div class="flex justify-center mb-4">
                 <div class="relative">
-                    <svg class="bean-icon w-20 h-20 float" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z" fill="#6a994e"></path>
-                        <path d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z" fill="#a7c957"></path>
-                        <path d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z" fill="#d8f3dc"></path>
+                    <svg class="bean-icon w-20 h-20 float" viewBox="0 0 100 100" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z"
+                            fill="#6a994e"></path>
+                        <path
+                            d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z"
+                            fill="#a7c957"></path>
+                        <path
+                            d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z"
+                            fill="#d8f3dc"></path>
                     </svg>
-                    <svg class="absolute top-0 left-0 w-20 h-20 opacity-30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M70 15C85 15 95 30 95 45C95 75 70 85 55 85C40 85 15 75 15 45C15 30 25 15 40 15C55 15 55 35 70 15Z" fill="#a7c957"></path>
+                    <svg class="absolute top-0 left-0 w-20 h-20 opacity-30" viewBox="0 0 100 100" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M70 15C85 15 95 30 95 45C95 75 70 85 55 85C40 85 15 75 15 45C15 30 25 15 40 15C55 15 55 35 70 15Z"
+                            fill="#a7c957"></path>
                     </svg>
                 </div>
             </div>
-            <h1 class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-500">BEAN STORE</h1>
+            <h1 class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-500">
+                BEAN STORE</h1>
             <p class="mt-4 text-xl text-green-800">Redeem your beans!</p>
         </header>
 
         <!-- User Bean Balance -->
         <div class="max-w-5xl mx-auto mb-8">
-            <div class="bg-green-50 rounded-2xl p-4 flex items-center justify-between border-2 border-green-200 shadow-md">
+            <div
+                class="bg-green-50 rounded-2xl p-4 flex items-center justify-between border-2 border-green-200 shadow-md">
                 <div class="flex items-center">
-                    <svg class="bean-icon w-8 h-8 mr-2" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z" fill="#6a994e"></path>
-                        <path d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z" fill="#a7c957"></path>
-                        <path d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z" fill="#d8f3dc"></path>
+                    <svg class="bean-icon w-8 h-8 mr-2" viewBox="0 0 100 100" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z"
+                            fill="#6a994e"></path>
+                        <path
+                            d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z"
+                            fill="#a7c957"></path>
+                        <path
+                            d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z"
+                            fill="#d8f3dc"></path>
                     </svg>
                     <span class="text-xl font-bold text-green-800">Your Bean Balance:</span>
                 </div>
@@ -174,29 +1467,44 @@
                     <div class="item-content">
                         <div class="flex items-center mb-4">
                             <!-- Item Icon -->
-                            <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mr-4 shadow-md">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                            <div
+                                class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mr-4 shadow-md">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
+                                    </path>
                                 </svg>
                             </div>
                             <!-- Item Name -->
                             <h3 class="text-xl font-bold text-green-800">Random Bean Potion</h3>
                         </div>
                         <!-- Item Description -->
-                        <p class="text-brown-600 mb-6">Purchase at your own risk! This mysterious potion could have unpredictable effects on your stream experience.</p>
+                        <p class="text-brown-600 mb-6">Purchase at your own risk! This mysterious potion could have
+                            unpredictable effects on your stream experience.</p>
                     </div>
-                    
+
                     <!-- Price and Purchase Button -->
                     <div class="item-footer flex items-center justify-between mt-4">
                         <div class="flex items-center">
-                            <svg class="bean-icon w-6 h-6 mr-2" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z" fill="#6a994e"></path>
-                                <path d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z" fill="#a7c957"></path>
-                                <path d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z" fill="#d8f3dc"></path>
+                            <svg class="bean-icon w-6 h-6 mr-2" viewBox="0 0 100 100" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z"
+                                    fill="#6a994e"></path>
+                                <path
+                                    d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z"
+                                    fill="#a7c957"></path>
+                                <path
+                                    d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z"
+                                    fill="#d8f3dc"></path>
                             </svg>
                             <span class="text-xl font-bold text-green-700">1,000</span>
                         </div>
-                        <button class="purchase-btn bg-green-600 text-white px-5 py-2 rounded-full font-bold hover:bg-green-700 shadow-md" data-item-id="random_potion" data-item-name="Random Bean Potion" data-item-price="1000" onclick="purchaseItem(this)">
+                        <button
+                            class="purchase-btn bg-green-600 text-white px-5 py-2 rounded-full font-bold hover:bg-green-700 shadow-md"
+                            data-item-id="random_potion" data-item-name="Random Bean Potion" data-item-price="1000"
+                            onclick="purchaseItem(this)">
                             Purchase
                         </button>
                     </div>
@@ -210,22 +1518,30 @@
                     <div class="item-content">
                         <div class="flex items-center mb-4">
                             <!-- Item Icon -->
-                            <div class="w-12 h-12 bg-pink-400 rounded-full flex items-center justify-center mr-4 shadow-md">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                            <div
+                                class="w-12 h-12 bg-pink-400 rounded-full flex items-center justify-center mr-4 shadow-md">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z">
+                                    </path>
                                 </svg>
                             </div>
                             <!-- Item Name -->
                             <h3 class="text-xl font-bold text-green-800">Sound Alerts</h3>
                         </div>
                         <!-- Item Description -->
-                        <p class="text-brown-600 mb-6">Browse and purchase exclusive sound alerts that you can trigger during streams! Each sound costs 1,000 beans.</p>
-                        <p class="text-gray-600 italic mb-6">You will be able to trigger this sound at any time during stream with a chat command.</p>
+                        <p class="text-brown-600 mb-6">Browse and purchase exclusive sound alerts that you can trigger
+                            during streams! Each sound costs 1,000 beans.</p>
+                        <p class="text-gray-600 italic mb-6">You will be able to trigger this sound at any time during
+                            stream with a chat command.</p>
                     </div>
-                    
+
                     <!-- View Sounds Button -->
                     <div class="item-footer flex items-center justify-end mt-4">
-                        <button class="purchase-btn bg-green-600 text-white px-5 py-2 rounded-full font-bold hover:bg-green-700 shadow-md" onclick="openSoundMenu()">
+                        <button
+                            class="purchase-btn bg-green-600 text-white px-5 py-2 rounded-full font-bold hover:bg-green-700 shadow-md"
+                            onclick="openSoundMenu()">
                             View Sounds
                         </button>
                     </div>
@@ -239,29 +1555,44 @@
                     <div class="item-content">
                         <div class="flex items-center mb-4">
                             <!-- Item Icon -->
-                            <div class="w-12 h-12 bg-indigo-500 rounded-full flex items-center justify-center mr-4 shadow-md glow">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            <div
+                                class="w-12 h-12 bg-indigo-500 rounded-full flex items-center justify-center mr-4 shadow-md glow">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                    </path>
                                 </svg>
                             </div>
                             <!-- Item Name -->
                             <h3 class="text-xl font-bold text-green-800">Bean Oracle</h3>
                         </div>
                         <!-- Item Description -->
-                        <p class="text-brown-600 mb-6">Receive the wisdom of the bean! The mystical Bean Oracle will share its ancient knowledge with you.</p>
+                        <p class="text-brown-600 mb-6">Receive the wisdom of the bean! The mystical Bean Oracle will
+                            share its ancient knowledge with you.</p>
                     </div>
-                    
+
                     <!-- Price and Purchase Button -->
                     <div class="item-footer flex items-center justify-between mt-4">
                         <div class="flex items-center">
-                            <svg class="bean-icon w-6 h-6 mr-2" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z" fill="#6a994e"></path>
-                                <path d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z" fill="#a7c957"></path>
-                                <path d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z" fill="#d8f3dc"></path>
+                            <svg class="bean-icon w-6 h-6 mr-2" viewBox="0 0 100 100" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z"
+                                    fill="#6a994e"></path>
+                                <path
+                                    d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z"
+                                    fill="#a7c957"></path>
+                                <path
+                                    d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z"
+                                    fill="#d8f3dc"></path>
                             </svg>
                             <span class="text-xl font-bold text-green-700">10,000</span>
                         </div>
-                        <button class="purchase-btn bg-green-600 text-white px-5 py-2 rounded-full font-bold hover:bg-green-700 shadow-md" data-item-id="bean_oracle" data-item-name="Bean Oracle" data-item-price="10000" onclick="purchaseItem(this)">
+                        <button
+                            class="purchase-btn bg-green-600 text-white px-5 py-2 rounded-full font-bold hover:bg-green-700 shadow-md"
+                            data-item-id="bean_oracle" data-item-name="Bean Oracle" data-item-price="10000"
+                            onclick="purchaseItem(this)">
                             Purchase
                         </button>
                     </div>
@@ -275,29 +1606,43 @@
                     <div class="item-content">
                         <div class="flex items-center mb-4">
                             <!-- Item Icon -->
-                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mr-4 shadow-md">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                            <div
+                                class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mr-4 shadow-md">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                                 </svg>
                             </div>
                             <!-- Item Name -->
                             <h3 class="text-xl font-bold text-green-800">Adopt a Plant</h3>
                         </div>
                         <!-- Item Description -->
-                        <p class="text-brown-600 mb-6">Choose your plant's species, name, and unlock exclusive chat commands to keep your plant growing!</p>
+                        <p class="text-brown-600 mb-6">Choose your plant's species, name, and unlock exclusive chat
+                            commands to keep your plant growing!</p>
                     </div>
-                    
+
                     <!-- Price and Purchase Button -->
                     <div class="item-footer flex items-center justify-between mt-4">
                         <div class="flex items-center">
-                            <svg class="bean-icon w-6 h-6 mr-2" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z" fill="#6a994e"></path>
-                                <path d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z" fill="#a7c957"></path>
-                                <path d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z" fill="#d8f3dc"></path>
+                            <svg class="bean-icon w-6 h-6 mr-2" viewBox="0 0 100 100" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z"
+                                    fill="#6a994e"></path>
+                                <path
+                                    d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z"
+                                    fill="#a7c957"></path>
+                                <path
+                                    d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z"
+                                    fill="#d8f3dc"></path>
                             </svg>
                             <span class="text-xl font-bold text-green-700">50,000</span>
                         </div>
-                        <button class="purchase-btn bg-green-600 text-white px-5 py-2 rounded-full font-bold hover:bg-green-700 shadow-md" data-item-id="adopt_plant" data-item-name="Adopt a Plant" data-item-price="50000" onclick="purchaseItem(this)">
+                        <button
+                            class="purchase-btn bg-green-600 text-white px-5 py-2 rounded-full font-bold hover:bg-green-700 shadow-md"
+                            data-item-id="adopt_plant" data-item-name="Adopt a Plant" data-item-price="50000"
+                            onclick="purchaseItem(this)">
                             Purchase
                         </button>
                     </div>
@@ -311,29 +1656,44 @@
                     <div class="item-content">
                         <div class="flex items-center mb-4">
                             <!-- Item Icon -->
-                            <div class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center mr-4 shadow-md">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                            <div
+                                class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center mr-4 shadow-md">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                                    </path>
                                 </svg>
                             </div>
                             <!-- Item Name -->
                             <h3 class="text-xl font-bold text-green-800">Adopt a Pony</h3>
                         </div>
                         <!-- Item Description -->
-                        <p class="text-brown-600 mb-6">Choose your pony's gender, name, and appearance! Summon at anytime with !pony and unlock exclusive chat commands!</p>
+                        <p class="text-brown-600 mb-6">Choose your pony's gender, name, and appearance! Summon at
+                            anytime with !pony and unlock exclusive chat commands!</p>
                     </div>
-                    
+
                     <!-- Price and Purchase Button -->
                     <div class="item-footer flex items-center justify-between mt-4">
                         <div class="flex items-center">
-                            <svg class="bean-icon w-6 h-6 mr-2" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z" fill="#6a994e"></path>
-                                <path d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z" fill="#a7c957"></path>
-                                <path d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z" fill="#d8f3dc"></path>
+                            <svg class="bean-icon w-6 h-6 mr-2" viewBox="0 0 100 100" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z"
+                                    fill="#6a994e"></path>
+                                <path
+                                    d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z"
+                                    fill="#a7c957"></path>
+                                <path
+                                    d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z"
+                                    fill="#d8f3dc"></path>
                             </svg>
                             <span class="text-xl font-bold text-green-700">500,000</span>
                         </div>
-                        <button class="purchase-btn bg-green-600 text-white px-5 py-2 rounded-full font-bold hover:bg-green-700 shadow-md" data-item-id="adopt_pony" data-item-name="Adopt a Pony" data-item-price="500000" onclick="purchaseItem(this)">
+                        <button
+                            class="purchase-btn bg-green-600 text-white px-5 py-2 rounded-full font-bold hover:bg-green-700 shadow-md"
+                            data-item-id="adopt_pony" data-item-name="Adopt a Pony" data-item-price="500000"
+                            onclick="purchaseItem(this)">
                             Purchase
                         </button>
                     </div>
@@ -347,29 +1707,44 @@
                     <div class="item-content">
                         <div class="flex items-center mb-4">
                             <!-- Item Icon -->
-                            <div class="w-12 h-12 bg-rose-400 rounded-full flex items-center justify-center mr-4 shadow-md shake">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            <div
+                                class="w-12 h-12 bg-rose-400 rounded-full flex items-center justify-center mr-4 shadow-md shake">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                    </path>
                                 </svg>
                             </div>
                             <!-- Item Name -->
                             <h3 class="text-xl font-bold text-green-800">Mystery Egg</h3>
                         </div>
                         <!-- Item Description -->
-                        <p class="text-brown-600 mb-6">Gain a mystery egg that will incubate while you are in stream and hatch at a random time!</p>
+                        <p class="text-brown-600 mb-6">Gain a mystery egg that will incubate while you are in stream and
+                            hatch at a random time!</p>
                     </div>
-                    
+
                     <!-- Price and Purchase Button -->
                     <div class="item-footer flex items-center justify-between mt-4">
                         <div class="flex items-center">
-                            <svg class="bean-icon w-6 h-6 mr-2" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z" fill="#6a994e"></path>
-                                <path d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z" fill="#a7c957"></path>
-                                <path d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z" fill="#d8f3dc"></path>
+                            <svg class="bean-icon w-6 h-6 mr-2" viewBox="0 0 100 100" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z"
+                                    fill="#6a994e"></path>
+                                <path
+                                    d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z"
+                                    fill="#a7c957"></path>
+                                <path
+                                    d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z"
+                                    fill="#d8f3dc"></path>
                             </svg>
                             <span class="text-xl font-bold text-green-700">1,000,000</span>
                         </div>
-                        <button class="purchase-btn bg-green-600 text-white px-5 py-2 rounded-full font-bold hover:bg-green-700 shadow-md pulse" data-item-id="mystery_egg" data-item-name="Mystery Egg" data-item-price="1000000" onclick="purchaseItem(this)">
+                        <button
+                            class="purchase-btn bg-green-600 text-white px-5 py-2 rounded-full font-bold hover:bg-green-700 shadow-md pulse"
+                            data-item-id="mystery_egg" data-item-name="Mystery Egg" data-item-price="1000000"
+                            onclick="purchaseItem(this)">
                             Purchase
                         </button>
                     </div>
@@ -380,47 +1755,68 @@
         <!-- Decorative Elements -->
         <div class="fixed bottom-0 left-0 w-40 h-40 opacity-30 pointer-events-none">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#a7c957" d="M39.9,-65.7C51.1,-58.4,59.5,-46.6,65.8,-33.8C72.1,-21,76.3,-7.1,74.8,6.1C73.3,19.3,66.1,31.8,56.8,42.1C47.5,52.4,36.1,60.5,23.1,66.2C10.1,71.9,-4.5,75.2,-17.8,72.2C-31.1,69.2,-43.1,59.9,-52.8,48.8C-62.5,37.7,-69.9,24.8,-73.1,10.7C-76.3,-3.4,-75.3,-18.7,-69.2,-31.8C-63.1,-44.9,-51.9,-55.8,-39.2,-62.4C-26.5,-69,-13.2,-71.3,0.5,-72.1C14.2,-72.9,28.7,-72.9,39.9,-65.7Z" transform="translate(100 100)"></path>
+                <path fill="#a7c957"
+                    d="M39.9,-65.7C51.1,-58.4,59.5,-46.6,65.8,-33.8C72.1,-21,76.3,-7.1,74.8,6.1C73.3,19.3,66.1,31.8,56.8,42.1C47.5,52.4,36.1,60.5,23.1,66.2C10.1,71.9,-4.5,75.2,-17.8,72.2C-31.1,69.2,-43.1,59.9,-52.8,48.8C-62.5,37.7,-69.9,24.8,-73.1,10.7C-76.3,-3.4,-75.3,-18.7,-69.2,-31.8C-63.1,-44.9,-51.9,-55.8,-39.2,-62.4C-26.5,-69,-13.2,-71.3,0.5,-72.1C14.2,-72.9,28.7,-72.9,39.9,-65.7Z"
+                    transform="translate(100 100)"></path>
             </svg>
         </div>
         <div class="fixed top-0 right-0 w-40 h-40 opacity-30 pointer-events-none">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#6a994e" d="M47.7,-79.8C62.2,-71.8,74.7,-59.9,81.5,-45.3C88.3,-30.7,89.5,-13.3,87.4,3.1C85.3,19.5,79.9,35,70.8,48.2C61.7,61.4,48.8,72.4,34.2,78.3C19.5,84.3,3,85.2,-12.4,81.5C-27.8,77.8,-42.1,69.5,-54.3,58.5C-66.5,47.5,-76.7,33.8,-81.3,18.1C-85.9,2.4,-85,-15.3,-78.3,-29.9C-71.6,-44.5,-59.1,-56,-45.1,-63.7C-31.1,-71.4,-15.5,-75.3,0.6,-76.3C16.8,-77.3,33.2,-87.8,47.7,-79.8Z" transform="translate(100 100)"></path>
+                <path fill="#6a994e"
+                    d="M47.7,-79.8C62.2,-71.8,74.7,-59.9,81.5,-45.3C88.3,-30.7,89.5,-13.3,87.4,3.1C85.3,19.5,79.9,35,70.8,48.2C61.7,61.4,48.8,72.4,34.2,78.3C19.5,84.3,3,85.2,-12.4,81.5C-27.8,77.8,-42.1,69.5,-54.3,58.5C-66.5,47.5,-76.7,33.8,-81.3,18.1C-85.9,2.4,-85,-15.3,-78.3,-29.9C-71.6,-44.5,-59.1,-56,-45.1,-63.7C-31.1,-71.4,-15.5,-75.3,0.6,-76.3C16.8,-77.3,33.2,-87.8,47.7,-79.8Z"
+                    transform="translate(100 100)"></path>
             </svg>
         </div>
 
         <!-- Purchase Modal -->
-        <div id="purchase-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div id="purchase-modal"
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
             <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 border-2 border-green-200 shadow-lg">
                 <div class="flex justify-between items-center mb-6">
                     <h2 id="modal-title" class="text-2xl font-bold text-green-800">Confirm Purchase</h2>
                     <div class="w-10 h-10">
-                        <svg class="bean-icon w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z" fill="#6a994e"></path>
-                            <path d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z" fill="#a7c957"></path>
-                            <path d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z" fill="#d8f3dc"></path>
+                        <svg class="bean-icon w-full h-full" viewBox="0 0 100 100" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z"
+                                fill="#6a994e"></path>
+                            <path
+                                d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z"
+                                fill="#a7c957"></path>
+                            <path
+                                d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z"
+                                fill="#d8f3dc"></path>
                         </svg>
                     </div>
                 </div>
                 <p id="modal-description" class="mb-6 text-brown-700">Are you sure you want to purchase this item?</p>
-                
+
                 <div class="flex items-center justify-between mb-6 bg-green-50 p-4 rounded-xl border border-green-200">
                     <div class="flex items-center">
-                        <svg class="bean-icon w-6 h-6 mr-2" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z" fill="#6a994e"></path>
-                            <path d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z" fill="#a7c957"></path>
-                            <path d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z" fill="#d8f3dc"></path>
+                        <svg class="bean-icon w-6 h-6 mr-2" viewBox="0 0 100 100" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z"
+                                fill="#6a994e"></path>
+                            <path
+                                d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z"
+                                fill="#a7c957"></path>
+                            <path
+                                d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z"
+                                fill="#d8f3dc"></path>
                         </svg>
                         <span class="text-lg text-green-800">Price:</span>
                     </div>
                     <span id="modal-price" class="text-xl font-bold text-green-700">100</span>
                 </div>
-                
+
                 <div class="flex justify-end space-x-4">
-                    <button id="cancel-purchase" class="px-5 py-2 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition-colors font-medium">
+                    <button id="cancel-purchase"
+                        class="px-5 py-2 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition-colors font-medium">
                         Cancel
                     </button>
-                    <button id="confirm-purchase" class="px-5 py-2 bg-green-600 text-white rounded-full font-bold hover:bg-green-700 transition-colors shadow-md">
+                    <button id="confirm-purchase"
+                        class="px-5 py-2 bg-green-600 text-white rounded-full font-bold hover:bg-green-700 transition-colors shadow-md">
                         Confirm Purchase
                     </button>
                 </div>
@@ -428,28 +1824,37 @@
         </div>
 
         <!-- Sound Menu Modal -->
-        <div id="sound-menu-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div id="sound-menu-modal"
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
             <div class="bg-white rounded-2xl p-8 max-w-2xl w-full mx-4 border-2 border-green-200 shadow-lg">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-bold text-green-800">Sound Alerts</h2>
-                    <button id="close-sound-menu" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    <button id="close-sound-menu"
+                        class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </button>
                 </div>
-                
+
                 <p class="mb-2 text-green-800">Purchase your favorite sound alerts for 1,000 beans each!</p>
-                <p class="mb-6 text-gray-600 italic">You will be able to trigger this sound at any time during stream with a chat command.</p>
-                
+                <p class="mb-6 text-gray-600 italic">You will be able to trigger this sound at any time during stream
+                    with a chat command.</p>
+
                 <div class="space-y-4 mb-6 max-h-80 overflow-y-auto pr-2">
+
                     <!-- Sound Item 1 -->
                     <div class="sound-item flex flex-col p-4 rounded-xl border border-green-200 hover:border-green-400">
                         <div class="flex items-center justify-between mb-3">
                             <div class="flex items-center">
                                 <div class="w-10 h-10 bg-pink-400 rounded-full flex items-center justify-center mr-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z">
+                                        </path>
                                     </svg>
                                 </div>
                                 <div>
@@ -457,27 +1862,66 @@
                                     <p class="text-sm text-gray-600">Louise Belcher</p>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-2">
-                                <button class="preview-sound-btn w-8 h-8 flex items-center justify-center rounded-full bg-green-100 hover:bg-green-200 text-green-700" data-sound-id="louise_belcher" data-sound-file="Sound Alerts/shes-autistic-bobs-burgers.mp3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+
+                            <div class="flex items-center space-x-2 max-w-210">
+                                <div class="flex items-center">
+
+                                    <!-- PASTE BEFORE class="preview-sound-btn-->
+
+                                    <!-- BEAN ICON + PRICE START -->
+                                    <svg class="bean-icon w-6 h-6 m-0" viewBox="0 0 100 100" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z"
+                                            fill="#6a994e"></path>
+                                        <path
+                                            d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z"
+                                            fill="#a7c957"></path>
+                                        <path
+                                            d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z"
+                                            fill="#d8f3dc"></path>
                                     </svg>
-                                </button>
-                                <button class="purchase-btn bg-green-600 text-white px-4 py-1 rounded-full text-sm font-bold hover:bg-green-700 shadow-md" data-item-id="sound_louise" data-item-name="Sound: Louise Belcher" data-item-price="1000" data-sound-file="Sound Alerts/shes-autistic-bobs-burgers.mp3" data-sound-command="!autistic" onclick="purchaseSound(this)">
-                                    Purchase
-                                </button>
+
+                                    <span class="text-sm font-bold text-green-700 m-0 mr-4 ml-2">1,000</span>
+                                    <!-- BEAN ICON + PRICE END -->
+
+                                    <button
+                                        class="preview-sound-btn w-8 h-8 flex mr-2 items-center justify-center rounded-full bg-green-100 hover:bg-green-200 text-green-700"
+                                        data-sound-id="louise_belcher"
+                                        data-sound-file="Sound Alerts/shes-autistic-bobs-burgers.mp3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z">
+                                            </path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </button>
+                                    <button
+                                        class="purchase-btn bg-green-600 text-white px-4 py-1 rounded-full text-sm font-bold hover:bg-green-700 shadow-md"
+                                        data-item-id="sound_louise" data-item-name="Sound: Louise Belcher"
+                                        data-item-price="1000"
+                                        data-sound-file="Sound Alerts/shes-autistic-bobs-burgers.mp3"
+                                        data-sound-command="!autistic" onclick="purchaseSound(this)">
+                                        Purchase
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Sound Item 2 -->
                     <div class="sound-item flex flex-col p-4 rounded-xl border border-green-200 hover:border-green-400">
                         <div class="flex items-center justify-between mb-3">
                             <div class="flex items-center">
                                 <div class="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center mr-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z">
+                                        </path>
                                     </svg>
                                 </div>
                                 <div>
@@ -485,27 +1929,57 @@
                                     <p class="text-sm text-gray-600">Finn The Human</p>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-2">
-                                <button class="preview-sound-btn w-8 h-8 flex items-center justify-center rounded-full bg-green-100 hover:bg-green-200 text-green-700" data-sound-id="finn_human" data-sound-file="Sound Alerts/BuffBabyFinn.mp3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            <div class="flex items-center space-x-2 max-w-210">
+
+                                <!-- BEAN ICON + PRICE START -->
+                                <svg class="bean-icon w-6 h-6 m-0" viewBox="0 0 100 100" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z"
+                                        fill="#6a994e"></path>
+                                    <path
+                                        d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z"
+                                        fill="#a7c957"></path>
+                                    <path
+                                        d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z"
+                                        fill="#d8f3dc"></path>
+                                </svg>
+
+                                <span class="text-sm font-bold text-green-700 mr-4 ml-2">1,000</span>
+                                <!-- BEAN ICON + PRICE END -->
+                                <button
+                                    class="preview-sound-btn w-8 h-8 flex items-center justify-center rounded-full bg-green-100 hover:bg-green-200 text-green-700"
+                                    data-sound-id="finn_human" data-sound-file="Sound Alerts/BuffBabyFinn.mp3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
                                 </button>
-                                <button class="purchase-btn bg-green-600 text-white px-4 py-1 rounded-full text-sm font-bold hover:bg-green-700 shadow-md" data-item-id="sound_finn" data-item-name="Sound: Buff Baby Finn" data-item-price="1000" data-sound-file="Sound Alerts/BuffBabyFinn.mp3" data-sound-command="!baby" onclick="purchaseSound(this)">
+                                <button
+                                    class="purchase-btn bg-green-600 text-white px-4 py-1 rounded-full text-sm font-bold hover:bg-green-700 shadow-md"
+                                    data-item-id="sound_finn" data-item-name="Sound: Buff Baby Finn"
+                                    data-item-price="1000" data-sound-file="Sound Alerts/BuffBabyFinn.mp3"
+                                    data-sound-command="!baby" onclick="purchaseSound(this)">
                                     Purchase
                                 </button>
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Sound Item 3 -->
                     <div class="sound-item flex flex-col p-4 rounded-xl border border-green-200 hover:border-green-400">
                         <div class="flex items-center justify-between mb-3">
                             <div class="flex items-center">
                                 <div class="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center mr-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z">
+                                        </path>
                                     </svg>
                                 </div>
                                 <div>
@@ -513,23 +1987,53 @@
                                     <p class="text-sm text-gray-600">Cinnamon Bun</p>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-2">
-                                <button class="preview-sound-btn w-8 h-8 flex items-center justify-center rounded-full bg-green-100 hover:bg-green-200 text-green-700" data-sound-id="cinnamon_bun" data-sound-file="Sound Alerts/You don't really focus at all.mp3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            <div class="flex items-center space-x-2 max-w-210">
+
+                                <!-- BEAN ICON + PRICE START -->
+                                <svg class="bean-icon w-6 h-6 m-0" viewBox="0 0 100 100" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M35 20C20 20 10 35 10 50C10 80 35 90 50 90C65 90 90 80 90 50C90 35 80 20 65 20C50 20 50 40 35 20Z"
+                                        fill="#6a994e"></path>
+                                    <path
+                                        d="M30 30C20 30 15 40 15 50C15 70 30 80 50 80C70 80 85 70 85 50C85 40 80 30 70 30C60 30 60 45 50 45C40 45 40 30 30 30Z"
+                                        fill="#a7c957"></path>
+                                    <path
+                                        d="M40 35C35 35 30 40 30 45C30 55 40 60 50 60C60 60 70 55 70 45C70 40 65 35 60 35C55 35 55 42.5 50 42.5C45 42.5 45 35 40 35Z"
+                                        fill="#d8f3dc"></path>
+                                </svg>
+
+                                <span class="text-sm font-bold text-green-700 mr-4 ml-2">1,000</span>
+                                <!-- BEAN ICON + PRICE END -->
+                                <button
+                                    class="preview-sound-btn w-8 h-8 flex items-center justify-center rounded-full bg-green-100 hover:bg-green-200 text-green-700"
+                                    data-sound-id="cinnamon_bun"
+                                    data-sound-file="Sound Alerts/You don't really focus at all.mp3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
                                 </button>
-                                <button class="purchase-btn bg-green-600 text-white px-4 py-1 rounded-full text-sm font-bold hover:bg-green-700 shadow-md" data-item-id="sound_cinnamon" data-item-name="Sound: Cinnamon Bun" data-item-price="1000" data-sound-file="Sound Alerts/You don't really focus at all.mp3" data-sound-command="!focus" onclick="purchaseSound(this)">
+                                <button
+                                    class="purchase-btn bg-green-600 text-white px-4 py-1 rounded-full text-sm font-bold hover:bg-green-700 shadow-md"
+                                    data-item-id="sound_cinnamon" data-item-name="Sound: Cinnamon Bun"
+                                    data-item-price="1000"
+                                    data-sound-file="Sound Alerts/You don't really focus at all.mp3"
+                                    data-sound-command="!focus" onclick="purchaseSound(this)">
                                     Purchase
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="flex justify-end">
-                    <button id="close-sound-menu-btn" class="px-5 py-2 bg-green-600 text-white rounded-full font-bold hover:bg-green-700 transition-colors shadow-md">
+                    <button id="close-sound-menu-btn"
+                        class="px-5 py-2 bg-green-600 text-white rounded-full font-bold hover:bg-green-700 transition-colors shadow-md">
                         Close
                     </button>
                 </div>
@@ -537,9 +2041,13 @@
         </div>
 
         <!-- Success Notification -->
-        <div id="success-notification" class="fixed bottom-4 right-4 bg-green-100 text-green-800 p-4 rounded-xl shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center border-2 border-green-200 z-50">
+        <div id="success-notification"
+            class="absolute bg-green-100 text-green-800 p-4 rounded-xl shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center border-2 border-green-200 z-50"
+            style="top:20%; left: 40%;">
+            
             <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
             </div>
@@ -550,13 +2058,17 @@
                     <span id="command-text" class="command-tag">!command</span>
                 </div>
             </div>
+            <button onclick="closeNotification()" class="ml-4 text-green-800 hover:text-red-500 font-bold text-xl leading-none">&times;</button>
         </div>
 
         <!-- Error Notification -->
-        <div id="error-notification" class="fixed bottom-4 right-4 bg-red-100 text-red-800 p-4 rounded-xl shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center border-2 border-red-200 z-50">
+        <div id="error-notification"
+            class="fixed bottom-4 right-4 bg-red-100 text-red-800 p-4 rounded-xl shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center border-2 border-red-200 z-50">
             <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center mr-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
                 </svg>
             </div>
             <span id="error-message" class="font-medium">Not enough beans!</span>
@@ -568,7 +2080,7 @@
         let currentItem = null;
         let userBeanBalance = 0; // Will be updated from StreamerBot
         let socket = null;
-        
+
         // For demo purposes, set a starting bean balance
         // In production, this would come from StreamerBot
         const DEMO_MODE = true;
@@ -582,7 +2094,7 @@
         </svg>`;
 
         // Connect to StreamerBot WebSocket when page loads
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             if (DEMO_MODE) {
                 // Use demo mode with fixed bean balance
                 updateBeanBalance(DEMO_BEAN_BALANCE);
@@ -590,10 +2102,10 @@
                 // Connect to StreamerBot in production
                 setupStreamerBotConnection();
             }
-            
+
             // Set up audio elements for sound previews
             setupSoundPreviews();
-            
+
             // Start bean rain animation on page load
             startBeanRain();
         });
@@ -605,23 +2117,23 @@
             audioElement.id = 'sound-preview-player';
             audioElement.style.display = 'none';
             document.body.appendChild(audioElement);
-            
+
             // Add click handlers to preview buttons
             document.querySelectorAll('.preview-sound-btn').forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const soundFile = this.getAttribute('data-sound-file');
                     previewSound(soundFile);
                 });
             });
         }
-        
+
         // Play a sound preview
         function previewSound(soundFile) {
             const audioElement = document.getElementById('sound-preview-player');
-            
+
             // Set the source to the GitHub-hosted sound file
             audioElement.src = soundFile;
-            
+
             // Play the sound
             audioElement.play().catch(error => {
                 console.error('Error playing sound:', error);
@@ -640,18 +2152,18 @@
             const itemId = button.getAttribute('data-item-id');
             const itemName = button.getAttribute('data-item-name');
             const itemPrice = parseInt(button.getAttribute('data-item-price'));
-            
+
             currentItem = {
                 id: itemId,
                 name: itemName,
                 price: itemPrice
             };
-            
+
             // Update modal content
             document.getElementById('modal-title').textContent = `Purchase ${itemName}`;
             document.getElementById('modal-description').textContent = `Are you sure you want to purchase ${itemName}?`;
             document.getElementById('modal-price').textContent = itemPrice.toLocaleString();
-            
+
             // Show modal
             document.getElementById('purchase-modal').classList.remove('hidden');
         }
@@ -663,7 +2175,7 @@
             const itemPrice = parseInt(button.getAttribute('data-item-price'));
             const soundFile = button.getAttribute('data-sound-file');
             const soundCommand = button.getAttribute('data-sound-command');
-            
+
             if (userBeanBalance >= itemPrice) {
                 if (DEMO_MODE) {
                     // Demo mode: simulate purchase
@@ -681,31 +2193,33 @@
                 showNotification('error', 'Not enough beans for this purchase!');
             }
         }
-
         // Show success notification with command for sound purchases
         function showSoundPurchaseSuccess(itemName, command) {
             document.getElementById('success-message').textContent = `Successfully purchased ${itemName}!`;
-            
+
             // Show command info
             const commandInfo = document.getElementById('command-info');
             const commandText = document.getElementById('command-text');
-            
+
             commandText.textContent = command;
             commandInfo.classList.remove('hidden');
-            
+
             // Show notification
             const notificationElement = document.getElementById('success-notification');
             notificationElement.classList.remove('translate-y-20', 'opacity-0');
-            
-            // Hide notification after 5 seconds (longer to read the command)
-            setTimeout(() => {
-                notificationElement.classList.add('translate-y-20', 'opacity-0');
-                // Hide command info after animation completes
-                setTimeout(() => {
-                    commandInfo.classList.add('hidden');
-                }, 300);
-            }, 5000);
         }
+
+        // Close button function
+        function closeNotification() {
+            const notificationElement = document.getElementById('success-notification');
+            const commandInfo = document.getElementById('command-info');
+
+            notificationElement.classList.add('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                commandInfo.classList.add('hidden');
+            }, 300);
+        }
+
 
         // Open the sound menu
         function openSoundMenu() {
@@ -713,16 +2227,16 @@
         }
 
         // Close sound menu listeners
-        document.getElementById('close-sound-menu').addEventListener('click', function() {
+        document.getElementById('close-sound-menu').addEventListener('click', function () {
             document.getElementById('sound-menu-modal').classList.add('hidden');
         });
 
-        document.getElementById('close-sound-menu-btn').addEventListener('click', function() {
+        document.getElementById('close-sound-menu-btn').addEventListener('click', function () {
             document.getElementById('sound-menu-modal').classList.add('hidden');
         });
 
         // Handle purchase confirmation
-        document.getElementById('confirm-purchase').addEventListener('click', function() {
+        document.getElementById('confirm-purchase').addEventListener('click', function () {
             if (currentItem && userBeanBalance >= currentItem.price) {
                 if (DEMO_MODE) {
                     // Demo mode: simulate purchase
@@ -735,20 +2249,20 @@
                     showNotification('success', `Purchasing ${currentItem.name}...`);
                     startBeanRain(); // Start bean rain animation
                 }
-                
+
                 // Close modal
                 document.getElementById('purchase-modal').classList.add('hidden');
             } else {
                 // Show error notification
                 showNotification('error', 'Not enough beans for this purchase!');
-                
+
                 // Close modal
                 document.getElementById('purchase-modal').classList.add('hidden');
             }
         });
 
         // Handle purchase cancellation
-        document.getElementById('cancel-purchase').addEventListener('click', function() {
+        document.getElementById('cancel-purchase').addEventListener('click', function () {
             document.getElementById('purchase-modal').classList.add('hidden');
         });
 
@@ -756,15 +2270,15 @@
         function showNotification(type, message) {
             const notificationElement = document.getElementById(`${type}-notification`);
             document.getElementById(`${type}-message`).textContent = message;
-            
+
             // Hide command info for regular notifications
             if (type === 'success') {
                 document.getElementById('command-info').classList.add('hidden');
             }
-            
+
             // Show notification
             notificationElement.classList.remove('translate-y-20', 'opacity-0');
-            
+
             // Hide notification after 3 seconds
             setTimeout(() => {
                 notificationElement.classList.add('translate-y-20', 'opacity-0');
@@ -777,8 +2291,8 @@
                 // Create the data object to send to StreamerBot
                 const data = {
                     // You'll need to set up an action in StreamerBot with this name
-                    action: "BeanStorePurchase", 
-                    
+                    action: "BeanStorePurchase",
+
                     // Data to send to the action
                     args: {
                         itemId: itemId,
@@ -786,20 +2300,20 @@
                         itemPrice: itemPrice
                     }
                 };
-                
+
                 // Add sound file info if provided
                 if (soundFile) {
                     data.args.soundFile = soundFile;
                 }
-                
+
                 // Add sound command if provided
                 if (soundCommand) {
                     data.args.soundCommand = soundCommand;
                 }
-                
+
                 // Send the data as JSON
                 socket.send(JSON.stringify(data));
-                
+
                 console.log(`Sending purchase request to StreamerBot: ${JSON.stringify(data)}`);
             } else {
                 console.error("WebSocket is not connected");
@@ -815,10 +2329,10 @@
                     // You'll need to set up an action in StreamerBot with this name
                     action: "GetBeanBalance"
                 };
-                
+
                 // Send the data as JSON
                 socket.send(JSON.stringify(data));
-                
+
                 console.log("Requesting bean balance from StreamerBot");
             }
         }
@@ -827,24 +2341,24 @@
         function setupStreamerBotConnection() {
             // Connect to StreamerBot WebSocket server
             socket = new WebSocket('ws://127.0.0.1:8080/');
-            
-            socket.onopen = function(e) {
+
+            socket.onopen = function (e) {
                 console.log('Connected to StreamerBot');
-                
+
                 // Request the user's bean balance when connection is established
                 requestBeanBalance();
             };
-            
-            socket.onmessage = function(event) {
+
+            socket.onmessage = function (event) {
                 try {
                     const data = JSON.parse(event.data);
                     console.log('Received data from StreamerBot:', data);
-                    
+
                     // Handle different types of responses from StreamerBot
                     if (data.event === 'BeanBalanceUpdate') {
                         // Update the bean balance display
                         updateBeanBalance(data.beanBalance);
-                    } 
+                    }
                     else if (data.event === 'PurchaseResponse') {
                         // Handle purchase response
                         if (data.success) {
@@ -852,14 +2366,14 @@
                             if (data.newBalance !== undefined) {
                                 updateBeanBalance(data.newBalance);
                             }
-                            
+
                             // Show success notification
                             if (data.soundCommand) {
                                 showSoundPurchaseSuccess(data.itemName, data.soundCommand);
                             } else {
                                 showNotification('success', data.message || `Successfully purchased ${data.itemName}!`);
                             }
-                            
+
                             // Start bean rain animation
                             startBeanRain();
                         } else {
@@ -871,58 +2385,58 @@
                     console.error('Error parsing message from StreamerBot:', error);
                 }
             };
-            
-            socket.onclose = function(event) {
+
+            socket.onclose = function (event) {
                 console.log('Disconnected from StreamerBot');
-                
+
                 // Update UI to show disconnected state
                 document.getElementById('bean-balance').textContent = 'Disconnected';
-                
+
                 // Try to reconnect after a delay
                 setTimeout(setupStreamerBotConnection, 5000);
             };
-            
-            socket.onerror = function(error) {
+
+            socket.onerror = function (error) {
                 console.error('StreamerBot WebSocket error:', error);
                 showNotification('error', 'Connection error. Please refresh the page.');
             };
         }
-        
+
         // Bean Rain Animation
         function startBeanRain() {
             const container = document.getElementById('bean-rain-container');
             const beanCount = 50; // Number of beans to create
-            
+
             // Clear any existing beans
             container.innerHTML = '';
-            
+
             // Create beans
             for (let i = 0; i < beanCount; i++) {
                 createBean(container);
             }
         }
-        
+
         function createBean(container) {
             // Create bean element
             const bean = document.createElement('div');
             bean.className = 'bean';
             bean.innerHTML = beanSvg;
-            
+
             // Random position
             const startX = Math.random() * window.innerWidth;
-            
+
             // Random size
             const size = 20 + Math.random() * 30;
-            
+
             // Random rotation
             const rotation = Math.random() * 360;
-            
+
             // Random fall duration
             const duration = 3 + Math.random() * 5;
-            
+
             // Random delay
             const delay = Math.random() * 3;
-            
+
             // Set styles
             bean.style.left = `${startX}px`;
             bean.style.width = `${size}px`;
@@ -930,10 +2444,10 @@
             bean.style.transform = `translateY(-100px) rotate(${rotation}deg)`;
             bean.style.animationDuration = `${duration}s`;
             bean.style.animationDelay = `${delay}s`;
-            
+
             // Add to container
             container.appendChild(bean);
-            
+
             // Remove bean after animation completes
             setTimeout(() => {
                 if (container.contains(bean)) {
@@ -942,5 +2456,10 @@
             }, (duration + delay) * 1000);
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'946009f1027ac98d',t:'MTc0ODI5MTUxNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
-<audio id="sound-preview-player" style="display: none;"></audio></body></html>
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'946009f1027ac98d',t:'MTc0ODI5MTUxNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+    <iframe height="1" width="1"
+        style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
+    <audio id="sound-preview-player" style="display: none;"></audio>
+</body>
+
+</html>
