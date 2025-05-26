@@ -1,1 +1,1 @@
-{"username": "clumsy_hippie", "beans": "1,000"}
+1,000
