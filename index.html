@@ -3002,9 +3002,9 @@
                     description: "Eww… was that you!?",
                     color: "#7cb342",
                     animation: function () {
-                        // LOOK FOR "animation: function()"
+                        // LOOK FOR "animation: function ()"
                         // REPLACE SOUND HERE //
-                        previewSound("Sound Effects\Farts\faaaaaaaaaaaaaaaaaaaaaaaaaaaaaaart.mp3")
+                        previewSound("Sound Effects/Farts/faaaaaaaaaaaaaaaaaaaaaaaaaaaaaaart.mp3");
                         // REPLACE SOUND HERE //
 
 
@@ -3031,14 +3031,14 @@
                 {
                     name: "MOSCOW MOOLE",
                     description: "Mooo...?",
-                    color: "#4CAF50",
+                    color: "rgba(120, 90, 60, 1)",
                     animation: function () {
-                         previewSound("Sound Effects\cow-moo.mp3")
-                        // Turn the page green
+                        previewSound("Sound Effects/cow-moo.mp3")
+                        // Turn the page brown
                         const originalColor = body.style.backgroundColor;
-                        body.style.backgroundColor = "#a5d6a7"; // Light green
+                        body.style.backgroundColor = "rgba(180, 140, 100, 0.3)"; // Light brown
 
-                        // Add a green overlay with ripple effect
+                        // Add a brown overlay with ripple effect
                         const overlay = document.createElement('div');
                         overlay.style.position = 'fixed';
                         overlay.style.top = '0';
@@ -3058,7 +3058,7 @@
                                 ripple.style.width = '50px';
                                 ripple.style.height = '50px';
                                 ripple.style.borderRadius = '50%';
-                                ripple.style.border = '2px solid #4CAF50';
+                                ripple.style.border = '2px solid rgba(120, 90, 60, 0.4)';
                                 ripple.style.left = `${Math.random() * 80 + 10}%`;
                                 ripple.style.top = `${Math.random() * 80 + 10}%`;
                                 ripple.style.transform = 'translate(-50%, -50%)';
@@ -3090,7 +3090,7 @@
                     description: "Aww you look so cute!",
                     color: "#E0A96D",
                     animation: function () {
-                        previewSound("Sound Effects\cat-meow.mp3")
+                        previewSound("Sound Effects/cat-meow.mp3");
                         catAnimation.classList.remove('hidden');
 
                         // Create a subtle cat-colored overlay
@@ -3177,7 +3177,7 @@
                     description: "+100 beans with every chat!",
                     color: "#FFD700",
                     animation: function () {
-                        previewSound("Sound Effects\fortnite-yay.mp3")
+                        previewSound("Sound Effects/fortnite-yay.mp3");
                         fortuneAnimation.classList.remove('hidden');
                         startBeanRain(brown = true);
                     }
@@ -3187,7 +3187,7 @@
                     description: "Bees!!!!!!!",
                     color: "#FFC107",
                     animation: function () {
-                        previewSound("Sound Effects\bee-swarm.mp3")
+                        previewSound("Sound Effects/bee-swarm.mp3");
                         beeAnimation.classList.remove('hidden');
 
                         // Create bees that bounce around quickly
@@ -3278,7 +3278,7 @@
 
                     // Don't allow clicking if animation is already in progress
                     if (potionBottle.classList.contains('shake-hard') ||
-                        potionBottle.classList.contains('drink-animation')) return;                  
+                        potionBottle.classList.contains('drink-animation')) return;
 
                     // Hide the question mark
                     questionMark.style.opacity = '0';
